@@ -1,17 +1,23 @@
 import { Grid, Heading, Text } from "@chakra-ui/react";
 
-const SomeText = () => {
+interface HeadingProps {
+  title: string;
+  description: string;
+}
+
+const Headline = (props: HeadingProps) => {
+  const { title, description } = props;
   return (
     <Grid textAlign="center">
       <Heading as="h1" size="lg">
-        nextarter-chakra
+        {title}
       </Heading>
 
       <Text fontSize="xs" color="gray.500">
-        This is a Next.js app with Chakra-UI and TypeScript setup.
+        {description}
       </Text>
     </Grid>
   );
 };
 
-export default SomeText;
+export default Headline;

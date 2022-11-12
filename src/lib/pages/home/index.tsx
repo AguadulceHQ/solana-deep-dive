@@ -1,9 +1,8 @@
 import { Flex } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 
-import CTASection from "lib/components/samples/CTASection";
+import Headline from "lib/components/Headline";
 import SomeImage from "lib/components/samples/SomeImage";
-import SomeText from "lib/components/samples/SomeText";
 
 const Home = () => {
   return (
@@ -17,9 +16,11 @@ const Home = () => {
       w="full"
     >
       <NextSeo title="Home" />
-      <SomeText />
+      <Headline
+        title="Deep Dive on Solana"
+        description="This repo contains us fooling around the Solana ecosystem."
+      />
       <SomeImage />
-      <CTASection />
     </Flex>
   );
 };
