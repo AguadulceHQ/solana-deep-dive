@@ -9,6 +9,7 @@ import Headline from "lib/components/Headline";
 const BalanceCheckerPage = () => {
   const [balance, setBalance] = useState(0);
   const [, setAddress] = useState("");
+  const [executable, setExecutable] = useState(false);
 
   const addressSubmittedHandler = (addressToCheck: string) => {
     try {
@@ -18,9 +19,13 @@ const BalanceCheckerPage = () => {
       connection.getBalance(key).then((currentBalance) => {
         setBalance(currentBalance / web3.LAMPORTS_PER_SOL);
       });
+      connection.getAccountInfo(key).then((accountInfo) => {
+        if (accountInfo) setExecutable(accountInfo.executable);
+      });
     } catch (error) {
       setAddress("");
       setBalance(0);
+      setExecutable(false);
       // alert(error);
     }
   };
@@ -43,6 +48,9 @@ const BalanceCheckerPage = () => {
       <BalanceChecker handler={addressSubmittedHandler} />
       <Box>
         <Badge colorScheme="green">{`Balance: ${balance}`} SOL</Badge>
+      </Box>
+      <Box>
+        <Badge colorScheme="purple">{`Executable: ${executable}`}</Badge>
       </Box>
     </Flex>
   );
